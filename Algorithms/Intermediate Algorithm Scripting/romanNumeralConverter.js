@@ -1,20 +1,21 @@
 
 function convertToRoman(num) {
-  romanArr = ["I", "V", "X","L","C", "D", "M"];
-  decimalArr = [1, 5, 10, 50 , 100, 500, 1000];
-  
-  if (Math.floor((num / 1) % 10) > 0) {
-    ones = Math.floor(( num / 1) % 10);
-  } 
-  if (Math.floor((num / 10) % 10) > 0) {
-    tens = Math.floor(( num / 10) % 10);
+  var romanArr = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+  var decimalArr = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+
+  var numStr = num.toString().split("");
+  var romanNums = [];
+  for (i = decimalArr.length - 1; i >= 0; i--) {
+    var currentNum = num/decimalArr[i]; 
+    var checker = Math.floor(currentNum) * decimalArr[i];
+    
+    if (checker > 0) {
+      console.log(num + '---' + checker + '->' + decimalArr[i]);
+      romanNums.push(romanArr[i].repeat(Math.floor(currentNum)));
+      num -= checker;
+    }
   }
-  if (Math.floor((num / 100) % 10) > 0) {
-    hundreds = Math.floor(( num / 100) % 10);
-  }
-  if (Math.floor((num / 1000) % 10) > 0) {
-    thousands = Math.floor(( num / 1000) % 10);
-  }
+  return romanNums.join("");
 }
 
-convertToRoman(2014);
+convertToRoman(3999);

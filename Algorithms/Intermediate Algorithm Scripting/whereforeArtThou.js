@@ -4,11 +4,14 @@ function whatIsInAName(collection, source) {
   var arr = [];
   // Only change code below this line
   arr = collection.filter(function(obj) {
+    // check if both source property/value pair matches
     for (var prop in source) {
-      if (obj.hasOwnProperty(prop) && obj[prop] == source[prop]) {
-        return obj;
+      // if one pair fails filter it out
+      if (source[prop] != obj[prop]) {
+        return false;
       }
     }
+    return true;
   });
   // Only change code above this line
   return arr;

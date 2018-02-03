@@ -11,14 +11,12 @@ function smallestCommons(arr) {
   var scm;
   while (scm == undefined) {
     rangeArr.some(function(val) {
-      if (isDivisble(val, dividend) == false) {
+      if (!isDivisble(val, dividend)) {
         // short circuit the loop
         return true;
-      } else if (isDivisble(val, dividend) == true) {
-        // check if last value in rangeArr
-        if (val == arr.min) {
-          scm = dividend;
-        }  
+      }
+      if (val == arr.min) {
+        scm = dividend;
       }
     });
     dividend++;
@@ -52,6 +50,5 @@ function isDivisble(divisor, dividend) {
   }
   return false;
 }
-
 
 smallestCommons([23,18]);

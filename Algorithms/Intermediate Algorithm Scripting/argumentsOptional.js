@@ -1,6 +1,5 @@
 
 function addTogether() {
-  console.log('-->');
   var arr = Array.from(arguments);
   if (!arr.every(isNumber)) {
     return undefined;
@@ -10,10 +9,16 @@ function addTogether() {
     return arr.reduce(function(total, current){
       return total + current;
     });
+  } else if (isNumber(arr[0])) {
+    return function(other) {
+      if (isNumber(other)) {
+        return other + arr[0];
+      }
+      return undefined;
+    };
   }
-  return false;
+ 
 }
-
 
 function isNumber(arg) {
   if (typeof(arg) == "number") {
@@ -22,5 +27,4 @@ function isNumber(arg) {
   return false;
 }
 
-// If it has only one argument then it has to return a function that uses that number and expects another one, to then add it.
-addTogether(99,3);
+addTogether(2)([3]);
